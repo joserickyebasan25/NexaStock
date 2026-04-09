@@ -1,4 +1,16 @@
 <?php include('header.php'); ?>
+<header class="sticky top-0 z-50 w-full glass-card border-b border-white/10 px-4 py-2">
+    <div class="navbar bg-transparent">
+        <div class="navbar-start">
+            <div class="flex items-center gap-2 group cursor-pointer">
+                <div class="bg-gradient-to-br from-purple-500 to-blue-600 p-2 rounded-lg shadow-lg shadow-purple-500/20">
+                    <i class="fas fa-box-open text-xl text-white"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">NexaStock</span>
+            </div>
+        </div>
+    </div>
+</header>
 <div class="flex">
     <aside class="w-64 hidden md:block min-h-screen border-r border-white/5 p-4 space-y-2">
         <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-4 ml-4">Main Menu</p>

@@ -1,4 +1,5 @@
 <?php include('header.php'); ?>
+
 <header class="sticky top-0 z-50 w-full glass-card border-b border-white/10 px-4 py-2">
     <div class="navbar bg-transparent">
         <div class="navbar-start">
@@ -32,34 +33,26 @@
     </aside>
 
     <main class="flex-1 p-6 space-y-6">
-        <div class="flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Company Assets</h1>
-            <div class="badge badge-lg glass border-white/10 gap-2 p-4 font-semibold">Total Value: $241,000</div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="glass-card p-4 rounded-2xl flex items-center gap-4">
-                <div class="p-3 bg-blue-500/20 text-blue-400 rounded-xl"><i class="fas fa-laptop"></i></div>
-                <div><p class="text-xs text-slate-500">Laptops</p><p class="font-bold">450 Units</p></div>
-            </div>
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold text-white">Registered Products</h1>
+            <input type="text" id="searchProduct" placeholder="Search product..."
+                class="input input-sm bg-white/5 border border-white/10 text-white placeholder-slate-400" />
         </div>
 
         <div class="glass-card rounded-3xl p-6">
-            <h3 class="font-bold mb-4 text-slate-300">Registered Hardware</h3>
-            <table class="table w-full">
+            <table class="table w-full text-white">
                 <thead class="text-slate-500 border-b border-white/5">
-                    <tr><th>Asset Name</th><th>Serial No.</th><th>Assigned To</th><th>Status</th></tr>
-                </thead>
-                <tbody>
-                    <tr class="hover:bg-white/5 transition-colors border-white/5">
-                        <td>MacBook Pro M3 14"</td>
-                        <td><span class="font-mono text-xs opacity-70">SN-2024-X99</span></td>
-                        <td>Sarah Jenkins</td>
-                        <td><span class="badge badge-success badge-sm font-bold">Assigned</span></td>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Status</th>
                     </tr>
-                </tbody>
+                </thead>
+                <tbody id="productList"></tbody>
             </table>
         </div>
     </main>
 </div>
+
 <?php include('footer.php'); ?>

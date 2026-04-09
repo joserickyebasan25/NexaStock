@@ -245,14 +245,6 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="p-4 flex justify-center border-t border-white/5">
-                    <div class="join">
-                        <button class="join-item btn btn-sm glass">«</button>
-                        <button class="join-item btn btn-sm glass">1</button>
-                        <button class="join-item btn btn-sm glass btn-active">2</button>
-                        <button class="join-item btn btn-sm glass">»</button>
-                    </div>
-                </div>
             </section>
         </main>
     </div>
