@@ -43,18 +43,11 @@
                         <th>By Staff</th>
                     </tr>
                 </thead>
-                <tbody class="text-sm">
-                    <tr class="border-white/5">
-                        <td>2026-03-31</td>
-                        <td><span class="text-emerald-400"><i class="fas fa-arrow-trend-down"></i> STOCK IN</span></td>
-                        <td>USB-C Hub</td>
-                        <td>+50</td>
-                        <td>Admin_Sarah</td>
-                    </tr>
-                </tbody>
+                <tbody id="staffMovementList" class="text-sm"></tbody>
             </table>
         </div>
     </main>
 </div>
 
+<?php include('stock_modal.php'); ?>
 <?php include('footer.php'); ?>

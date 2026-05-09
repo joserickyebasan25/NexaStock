@@ -31,29 +31,59 @@
     </aside>
 
 <main class="flex-1 p-6 space-y-6">
-    <h1 class="text-2xl font-bold">Stock Monitoring</h1>
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <h1 class="text-2xl font-bold">Stock Monitoring</h1>
+        <button class="btn btn-primary bg-purple-600 border-none" onclick="document.getElementById('stockMovementModal').showModal()">
+            <i class="fas fa-right-left"></i> Process Movement
+        </button>
+    </div>
     
     <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <div class="lg:col-span-3 glass-card rounded-3xl p-6">
-            <h3 class="font-bold mb-6">Stock Fluctuation (24h)</h3>
-            <div class="h-48 flex items-end gap-1">
-                <div class="flex-1 bg-purple-500/40 rounded-t-lg" style="height: 30%"></div>
-                <div class="flex-1 bg-purple-500/40 rounded-t-lg" style="height: 50%"></div>
-                <div class="flex-1 bg-blue-500 rounded-t-lg" style="height: 80%"></div>
-                <div class="flex-1 bg-purple-500/40 rounded-t-lg" style="height: 45%"></div>
+            <h3 class="font-bold mb-6">Recent Stock Movements</h3>
+            <div class="overflow-x-auto">
+                <table class="table w-full">
+                    <thead>
+                        <tr class="text-slate-400 border-white/5">
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody id="movementList"></tbody>
+                </table>
             </div>
         </div>
 
         <div class="glass-card rounded-3xl p-6 border-red-500/20">
             <h3 class="text-red-400 font-bold mb-4 underline">Critical Alerts</h3>
-            <div class="space-y-4 text-xs">
-                <div class="p-2 bg-red-500/10 rounded-lg border border-red-500/20">
-                    <p class="font-bold">Dell Monitor U24</p>
-                    <p class="opacity-60 text-[10px]">Only 2 remaining in storage</p>
-                </div>
-            </div>
+            <div id="criticalStockList" class="space-y-4 text-xs"></div>
         </div>
     </div>
 </main>
+
+<dialog id="stockMovementModal" class="modal">
+    <div class="modal-box bg-[#11141b] text-white border border-white/10">
+        <h3 class="font-bold text-lg mb-4">Process Stock Movement</h3>
+        <form id="stockMovementForm" class="space-y-4">
+            <select id="stockProduct" class="select w-full bg-white/5 border border-white/10 text-white">
+                <option class="bg-[#11141b] text-white" value="">Select product</option>
+            </select>
+            <select id="movementType" class="select w-full bg-white/5 border border-white/10 text-white">
+                <option class="bg-[#11141b] text-white" value="in">Stock In</option>
+                <option class="bg-[#11141b] text-white" value="out">Stock Out</option>
+            </select>
+            <input type="number" id="movementQty" min="1" step="1" placeholder="Quantity" class="input w-full bg-white/5 border border-white/10 text-white" />
+            <input type="date" id="movementDate" class="input w-full bg-white/5 border border-white/10 text-white" />
+            <textarea id="movementNotes" placeholder="Notes" class="textarea w-full bg-white/5 border border-white/10 text-white"></textarea>
+            <div class="modal-action">
+                <button type="submit" class="btn bg-purple-600 border-none text-white">Save</button>
+                <button type="button" onclick="document.getElementById('stockMovementModal').close()" class="btn">Cancel</button>
+            </div>
+        </form>
+    </div>
+</dialog>
 
 <?php include('footer.php'); ?>

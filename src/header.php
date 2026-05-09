@@ -15,5 +15,33 @@
 <style>
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    .loader-ring {
+        width: 54px;
+        height: 54px;
+        border: 3px solid rgba(255, 255, 255, 0.12);
+        border-top-color: #38bdf8;
+        border-radius: 9999px;
+        animation: spin 0.85s linear infinite;
+    }
+    .loading-bar {
+        width: 45%;
+        animation: loading-progress 1.35s ease-in-out infinite;
+    }
+    #loginTransition.show {
+        display: flex;
+        animation: fade-in 0.3s ease forwards;
+    }
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+    @keyframes loading-progress {
+        0% { transform: translateX(-110%); }
+        55% { transform: translateX(75%); }
+        100% { transform: translateX(230%); }
+    }
+    @keyframes fade-in {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
 </style>
 <body class="bg-sky-100 text-gray-800">

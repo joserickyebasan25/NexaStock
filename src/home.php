@@ -94,4 +94,24 @@
     </div>
 </div>
 
+<div id="loginTransition" class="fixed inset-0 z-50 hidden items-center justify-center bg-[#0a0c10] text-white">
+    <div class="absolute inset-0 opacity-70">
+        <div class="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-sky-500/20 blur-3xl"></div>
+        <div class="absolute bottom-12 right-12 h-56 w-56 rounded-full bg-indigo-500/20 blur-3xl"></div>
+    </div>
+
+    <div class="relative flex w-full max-w-sm flex-col items-center px-6 text-center">
+        <div class="mb-8 flex h-20 w-20 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-[0_0_45px_rgba(14,165,233,0.25)]">
+            <i class="fas fa-box text-3xl text-sky-300"></i>
+        </div>
+        <div class="loader-ring mb-8"></div>
+        <p class="text-xs font-black uppercase tracking-[0.35em] text-sky-300">NexaStock</p>
+        <h2 id="transitionTitle" class="mt-3 text-3xl font-black tracking-tight">Opening Dashboard</h2>
+        <p id="transitionMessage" class="mt-3 text-sm font-medium text-slate-400">Preparing your workspace...</p>
+        <div class="mt-8 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
+            <div class="loading-bar h-full rounded-full bg-gradient-to-r from-sky-400 to-blue-600"></div>
+        </div>
+    </div>
+</div>
+
 <?php include('footer.php'); ?>

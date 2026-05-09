@@ -34,7 +34,7 @@
     <main class="flex-1 p-6 space-y-6">
         <div class="flex justify-between items-center">
             <h1 class="text-2xl font-bold">Analytics & Reports</h1>
-            <button class="btn btn-secondary border-none shadow-lg shadow-secondary/20"><i class="fas fa-file-pdf"></i> Generate Full Audit</button>
+            <button id="auditSummaryBtn" class="btn btn-secondary border-none shadow-lg shadow-secondary/20"><i class="fas fa-file-pdf"></i> Generate Full Audit</button>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -42,14 +42,14 @@
                 <i class="fas fa-cloud-arrow-down text-4xl text-blue-400"></i>
                 <h3 class="text-xl font-bold">Export Inventory Data</h3>
                 <p class="text-xs text-slate-400">Download your entire product list in CSV or Excel format.</p>
-                <button class="btn btn-block glass hover:bg-blue-600 hover:text-white">Download .CSV</button>
+                <button id="downloadInventoryCsv" class="btn btn-block glass hover:bg-blue-600 hover:text-white">Download .CSV</button>
             </div>
             
             <div class="glass-card rounded-3xl p-8 text-center space-y-4 hover:border-emerald-500/30 transition-all">
                 <i class="fas fa-chart-line text-4xl text-emerald-400"></i>
                 <h3 class="text-xl font-bold">Asset Depreciation</h3>
                 <p class="text-xs text-slate-400">View the current value versus purchase price of hardware.</p>
-                <button class="btn btn-block glass hover:bg-emerald-600 hover:text-white">View Chart</button>
+                <button id="viewInventoryValue" class="btn btn-block glass hover:bg-emerald-600 hover:text-white">View Summary</button>
             </div>
         </div>
     </main>

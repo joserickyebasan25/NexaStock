@@ -11,18 +11,31 @@
         </div>
         <div class="flex-none gap-4">
             <div class="form-control hidden md:block">
-                <input type="text" placeholder="Quick Search..." class="input input-sm input-bordered bg-slate-800 border-white/10 w-64" />
+                <input type="text" id="staffQuickSearch" placeholder="Quick Search..." class="input input-sm input-bordered bg-slate-800 border-white/10 w-64" />
+            </div>
+            <div class="dropdown dropdown-end">
+                <button class="btn btn-ghost btn-circle hover:bg-white/10">
+                    <div class="indicator">
+                        <i class="fa-regular fa-bell text-lg"></i>
+                        <span id="staffNotificationCount" class="badge badge-xs badge-primary indicator-item hidden"></span>
+                    </div>
+                </button>
+                <div tabindex="0" class="mt-3 z-[1] dropdown-content glass-card rounded-box w-80 border border-white/10 p-4">
+                    <h3 class="font-bold text-sm mb-3">Notifications</h3>
+                    <div id="staffNotificationList" class="space-y-3 text-sm"></div>
+                </div>
             </div>
             <div class="dropdown dropdown-end">
                 <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar border border-white/10">
                     <div class="w-10 rounded-full">
-                        <img src="https://ui-avatars.com/api/?name=Staff+Member&background=3b82f6&color=fff" />
+                        <img src="<?php echo htmlspecialchars($currentUserAvatar); ?>" alt="<?php echo htmlspecialchars($currentUserName); ?>" />
                     </div>
                 </div>
                 <ul tabindex="0" class="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content glass-card rounded-box w-52">
-                    <li><a>My Profile</a></li>
-                    <li><a>Help Desk</a></li>
-                    <li><a class="text-error">Sign Out</a></li>
+                    <li class="px-3 py-2 text-xs text-slate-400"><?php echo htmlspecialchars($currentUserName); ?></li>
+                    <li><a href="Inventory.php">My Inventory</a></li>
+                    <li><a href="Assets.php">Assets</a></li>
+                    <li><a href="/NexaStock/handlers/logout.php" class="text-error">Sign Out</a></li>
                 </ul>
             </div>
         </div>
@@ -51,7 +64,7 @@
                         <i class="fas fa-arrow-up text-amber-500 text-xl"></i>
                         <span>Stock Out</span>
                     </button>
-                    <button class="btn h-24 glass-card action-card border-l-4 border-l-blue-500 flex flex-col items-center justify-center gap-2 transition-all">
+                    <button onclick="window.location.href='Assets.php'" class="btn h-24 glass-card action-card border-l-4 border-l-blue-500 flex flex-col items-center justify-center gap-2 transition-all">
                         <i class="fas fa-barcode text-blue-500 text-xl"></i>
                         <span>Scan Asset</span>
                     </button>
@@ -61,19 +74,19 @@
             <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="glass-card p-4 rounded-2xl border border-white/5">
                     <p class="text-xs text-slate-400">Inbound (Today)</p>
-                    <p class="text-xl font-bold">124 <span class="text-xs font-normal opacity-50">Units</span></p>
+                    <p class="text-xl font-bold"><span id="staffInboundToday">0</span> <span class="text-xs font-normal opacity-50">Units</span></p>
                 </div>
                 <div class="glass-card p-4 rounded-2xl border border-white/5">
                     <p class="text-xs text-slate-400">Outbound (Today)</p>
-                    <p class="text-xl font-bold">86 <span class="text-xs font-normal opacity-50">Units</span></p>
+                    <p class="text-xl font-bold"><span id="staffOutboundToday">0</span> <span class="text-xs font-normal opacity-50">Units</span></p>
                 </div>
                 <div class="glass-card p-4 rounded-2xl border border-white/5 border-rose-500/20">
                     <p class="text-xs text-slate-400 text-rose-400">Low Stock Items</p>
-                    <p class="text-xl font-bold text-rose-400">03</p>
+                    <p id="staffLowStockCount" class="text-xl font-bold text-rose-400">0</p>
                 </div>
                 <div class="glass-card p-4 rounded-2xl border border-white/5 border-blue-500/20">
                     <p class="text-xs text-slate-400">Assigned Tasks</p>
-                    <p class="text-xl font-bold text-blue-400">05</p>
+                    <p id="staffTotalProducts" class="text-xl font-bold text-blue-400">0</p>
                 </div>
             </section>
 
@@ -92,30 +105,13 @@
                                 <th>Quick Edit</th>
                             </tr>
                         </thead>
-                        <tbody class="text-sm">
-                            <tr class="border-white/5">
-                                <td>Logitech MX Master 3S</td>
-                                <td><span class="badge badge-success badge-xs"></span> In Stock</td>
-                                <td class="font-mono">14</td>
-                                <td>
-                                    <button class="btn btn-xs btn-outline border-white/10 hover:bg-white/5" onclick="stock_modal.showModal()">Update</button>
-                                </td>
-                            </tr>
-                            <tr class="border-white/5">
-                                <td>Dell XPS 15 Charger</td>
-                                <td><span class="badge badge-warning badge-xs"></span> Low</td>
-                                <td class="font-mono text-warning font-bold">02</td>
-                                <td>
-                                    <button class="btn btn-xs btn-outline border-white/10 hover:bg-white/5" onclick="stock_modal.showModal()">Update</button>
-                                </td>
-                            </tr>
-                        </tbody>
+                        <tbody id="staffWatchlist" class="text-sm"></tbody>
                     </table>
                 </div>
 
                 <div class="glass-card rounded-2xl border border-white/5 p-4 h-fit">
                     <h3 class="font-bold mb-4 text-sm uppercase tracking-wide opacity-50">My Recent Activity</h3>
-                    <div class="space-y-4">
+                    <div id="staffRecentActivity" class="space-y-4">
                         <div class="flex gap-3">
                             <div class="text-emerald-500 mt-1"><i class="fas fa-circle-check text-xs"></i></div>
                             <div>
@@ -143,47 +139,5 @@
         </main>
     </div>
 
-    <dialog id="stock_modal" class="modal">
-        <div class="modal-box glass-card border-white/10">
-            <h3 class="font-bold text-lg mb-6">Stock Movement Form</h3>
-            <div class="space-y-4">
-                <div class="form-control">
-                    <label class="label"><span class="label-text opacity-60">Select Product</span></label>
-                    <select class="select select-bordered bg-slate-800 border-white/10 focus:outline-none">
-                        <option disabled selected>Pick an item...</option>
-                        <option>Logitech MX Master 3S</option>
-                        <option>Dell XPS 1 Charger</option>
-                        <option>Ethernet Cable 5m</option>
-                    </select>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="form-control">
-                        <label class="label"><span class="label-text opacity-60">Quantity Change</span></label>
-                        <input type="number" placeholder="e.g. 10" class="input input-bordered bg-slate-800 border-white/10" />
-                    </div>
-                    <div class="form-control">
-                        <label class="label"><span class="label-text opacity-60">Movement Date</span></label>
-                        <input type="date" class="input input-bordered bg-slate-800 border-white/10" />
-                    </div>
-                </div>
-                <div class="form-control">
-                    <label class="label"><span class="label-text opacity-60">Reference / Notes</span></label>
-                    <textarea class="textarea textarea-bordered bg-slate-800 border-white/10 h-20" placeholder="e.g. Replenishing floor stock or Client Order ID"></textarea>
-                </div>
-            </div>
-            <div class="modal-action">
-                <form method="dialog">
-                    <button class="btn btn-ghost">Cancel</button>
-                    <button class="btn btn-primary bg-blue-600 border-none px-6">Submit Movement</button>
-                </form>
-            </div>
-        </div>
-        <form method="dialog" class="modal-backdrop bg-slate-950/80 backdrop-blur-sm">
-            <button>close</button>
-        </form>
-    </dialog>
-
-</body>
-</html>
-
+<?php include('stock_modal.php'); ?>
 <?php include('footer.php'); ?>

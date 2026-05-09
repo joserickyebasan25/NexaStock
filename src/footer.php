@@ -2,13 +2,27 @@
 <script src="/NexaStock/assets/js/jquery.js"></script>
 <script>
 $(document).ready(function () {
+    function showLoginTransition(redirectUrl) {
+        const isAdmin = redirectUrl.toLowerCase().includes('/admin/');
+        const role = isAdmin ? 'Admin' : 'Staff';
+
+        $('#transitionTitle').text(`Opening ${role} Dashboard`);
+        $('#transitionMessage').text('Preparing your workspace...');
+        $('#loginTransition').removeClass('hidden').addClass('show');
+
+        setTimeout(function () {
+            window.location.href = redirectUrl;
+        }, 1400);
+    }
 
     $('#signinForm').on('submit', function(e){
         e.preventDefault();
 
         var email = $('#login_email').val();
         var password = $('#login_password').val();
+        var $submitButton = $(this).find('button[type="submit"]');
         
+        $submitButton.prop('disabled', true).html('Signing In...');
        
         $.ajax({
             url: '/NexaStock/handlers/login.php',
@@ -18,6 +32,7 @@ $(document).ready(function () {
 
             success: function(response){
                 if(response.status === 'error'){
+                    $submitButton.prop('disabled', false).html('Sign In â†’');
                     Swal.fire({
                         icon: "error",
                         title: "Login Failed",
@@ -25,20 +40,13 @@ $(document).ready(function () {
                     });
 
                 } else if(response.status === 'success'){
-                    Swal.fire({
-                        icon: "success",
-                        title: "Login Successful",
-                        text: "Redirecting...",
-                        timer: 1500,
-                        showConfirmButton: false
-                    }).then(() => {
-                        window.location.href = response.redirect;
-                    });
+                    showLoginTransition(response.redirect);
                 }
             },
 
             error: function(xhr, status, error){
                 console.error('AJAX Error:', error);
+                $submitButton.prop('disabled', false).html('Sign In â†’');
 
                 Swal.fire({
                     icon: "error",

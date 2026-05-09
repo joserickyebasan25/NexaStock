@@ -54,15 +54,24 @@
     <dialog id="staffModal" class="modal">
         <div class="modal-box bg-[#11141b] text-white border border-white/10">
             <h3 id="modalTitle" class="font-bold text-lg mb-4">Add Staff</h3>
-            <form id="staffForm" class="space-y-4">
+            <form id="staffForm" class="space-y-4" enctype="multipart/form-data">
                 <input type="hidden" id="staff_id">
+                <input type="hidden" id="current_photo">
+                <div class="flex items-center gap-4">
+                    <div class="avatar">
+                        <div class="w-16 rounded-full ring ring-white/10">
+                            <img id="photoPreview" src="https://ui-avatars.com/api/?name=Staff&background=8b5cf6&color=fff" alt="Staff photo preview" />
+                        </div>
+                    </div>
+                    <input type="file" id="photo" accept="image/jpeg,image/png,image/webp,image/gif" class="file-input file-input-bordered w-full bg-white/5 border border-white/10 text-white" />
+                </div>
                 <input type="text" id="fname" placeholder="First Name" class="input w-full bg-white/5 border border-white/10 text-white" />
                 <input type="text" id="lname" placeholder="Last Name" class="input w-full bg-white/5 border border-white/10 text-white" />
                 <input type="email" id="email" placeholder="Email" class="input w-full bg-white/5 border border-white/10 text-white" />
                 <input type="password" id="password" placeholder="Password" class="input w-full bg-white/5 border border-white/10 text-white" />
                 <select id="role" class="select w-full bg-white/5 border border-white/10 text-white">
-                    <option value="staff">Staff</option>
-                    <option value="admin">Admin</option>
+                    <option class="bg-[#11141b] text-white" value="staff">Staff</option>
+                    <option class="bg-[#11141b] text-white" value="admin">Admin</option>
                 </select>
 
                 <div class="modal-action">

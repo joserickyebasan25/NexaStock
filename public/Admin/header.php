@@ -1,3 +1,15 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+$currentUserName = trim(($_SESSION['first_name'] ?? '') . ' ' . ($_SESSION['last_name'] ?? ''));
+if ($currentUserName === '') {
+    $currentUserName = $_SESSION['email'] ?? 'Admin User';
+}
+$currentUserPhoto = $_SESSION['photo'] ?? '';
+$currentUserAvatar = $currentUserPhoto ?: 'https://ui-avatars.com/api/?name=' . urlencode($currentUserName) . '&background=8b5cf6&color=fff';
+?>
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>

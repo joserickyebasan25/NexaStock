@@ -11,7 +11,7 @@
     </div>
     <div class="flex-none gap-4">
         <div class="form-control hidden md:block">
-            <input type="text" placeholder="Search inventory..." class="input input-sm input-bordered bg-slate-800 border-white/10 w-64" />
+            <input type="text" id="staffSearchInventory" placeholder="Search inventory..." class="input input-sm input-bordered bg-slate-800 border-white/10 w-64" />
         </div>
         </div>
 </header>
@@ -35,31 +35,23 @@
         <div class="glass-card rounded-2xl overflow-hidden border border-white/5">
             <div class="p-4 border-b border-white/5 flex justify-between items-center bg-slate-800/30">
                 <h3 class="font-bold">Current Stock</h3>
-                <button class="btn btn-sm btn-primary bg-blue-600 border-none" onclick="stock_modal.showModal()">+ New Product</button>
+                <button class="btn btn-sm btn-primary bg-blue-600 border-none" onclick="stock_modal.showModal()">Process Movement</button>
             </div>
 
             <table class="table w-full">
                 <thead class="bg-slate-900/50">
                     <tr class="text-slate-500 border-white/5">
                         <th>Product Name</th>
-                        <th>SKU</th>
                         <th>Quantity</th>
                         <th>Status</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody class="text-sm">
-                    <tr class="border-white/5">
-                        <td>Logitech MX Master 3S</td>
-                        <td><span class="font-mono text-xs text-blue-400">LOGI-992</span></td>
-                        <td>14 Units</td>
-                        <td><div class="badge badge-success badge-outline text-[10px]">IN STOCK</div></td>
-                        <td><button class="btn btn-xs btn-outline border-white/10">Edit</button></td>
-                    </tr>
-                </tbody>
+                <tbody id="staffInventoryList" class="text-sm"></tbody>
             </table>
         </div>
     </main>
 </div>
 
+<?php include('stock_modal.php'); ?>
 <?php include('footer.php'); ?>

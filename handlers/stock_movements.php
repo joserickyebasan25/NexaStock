@@ -3,13 +3,13 @@ include('../classes/Users.php');
 header('Content-Type: application/json');
 
 $usersObj = new Users();
-$action = $_POST['action'] ?? $_GET['action'] ?? '';
+$action = $_POST['action'] ?? '';
 
-function productsToArray($result) {
+function rowsToArray($result) {
     $items = [];
 
     if ($result && $result->num_rows > 0) {
-        while($row = $result->fetch_assoc()){
+        while ($row = $result->fetch_assoc()) {
             $items[] = $row;
         }
     }
@@ -23,7 +23,7 @@ try {
         exit;
     }
 
-    echo json_encode(productsToArray($usersObj->getAllProducts()));
+    echo json_encode(rowsToArray($usersObj->getStockMovements()));
 } catch (Throwable $e) {
     echo json_encode([]);
 }

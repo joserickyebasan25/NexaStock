@@ -30,31 +30,24 @@
         <div class="glass-card rounded-2xl overflow-hidden border border-white/5">
             <div class="p-4 border-b border-white/5 flex justify-between items-center bg-slate-800/30">
                 <h3 class="font-bold">Asset Register</h3>
-                <button class="btn btn-sm btn-primary bg-blue-600 border-none">+ Register Asset</button>
+                <button id="refreshStaffAssets" class="btn btn-sm btn-primary bg-blue-600 border-none">Refresh</button>
             </div>
 
             <table class="table w-full">
                 <thead class="bg-slate-900/50">
                     <tr class="text-slate-500 border-white/5">
                         <th>Asset Name</th>
-                        <th>Serial Number</th>
-                        <th>Condition</th>
-                        <th>User Assigned</th>
+                        <th>Category</th>
+                        <th>Quantity</th>
+                        <th>Value</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tbody class="text-sm">
-                    <tr class="border-white/5">
-                        <td>MacBook Pro M3</td>
-                        <td><span class="font-mono text-xs">SN-88291-X</span></td>
-                        <td><div class="badge badge-info badge-outline text-[10px]">EXCELLENT</div></td>
-                        <td>John Doe</td>
-                        <td><button class="btn btn-xs btn-outline border-white/10">Details</button></td>
-                    </tr>
-                </tbody>
+                <tbody id="staffAssetList" class="text-sm"></tbody>
             </table>
         </div>
     </main>
 </div>
 
+<?php include('stock_modal.php'); ?>
 <?php include('footer.php'); ?>
