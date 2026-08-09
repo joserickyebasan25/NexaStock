@@ -1,7 +1,13 @@
 <?php
-include('../classes/Users.php');
-
+include '../classes/Users.php';
 header('Content-Type: application/json');
+session_start();
+
+// CSRF protection
+if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf_token'])) {
+    echo json_encode(['status' => 'error', 'message' => 'Invalid CSRF token.']);
+    exit;
+}
 
 $users = new Users();
 
@@ -34,7 +40,7 @@ if (isset($_POST['login'])) {
         exit;
     }
 
-    // 🔐 Login
+    // �� 🔐 Login
     $login = $users->login($email, $password);
 
     if ($login === 2) {

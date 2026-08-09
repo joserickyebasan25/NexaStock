@@ -73,6 +73,7 @@
     <div class="modal-box bg-[#11141b] text-white border border-white/10">
         <h3 id="productModalTitle" class="font-bold text-lg mb-4">Add Product</h3>
         <form id="productForm" class="space-y-4">
+            <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>">
             <input type="hidden" id="product_id">
             <input type="text" id="product_name" placeholder="Product Name" class="input w-full bg-white/5 border border-white/10 text-white" />
             <input type="text" id="category" placeholder="Category" class="input w-full bg-white/5 border border-white/10 text-white" />

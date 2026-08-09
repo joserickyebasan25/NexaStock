@@ -13,23 +13,23 @@
                     <i class="fas fa-box text-xl text-white"></i>
                 </div>
             <div>
-                    <h1 class="text-4xl font-black text-white tracking-tighter uppercase">NexaStock</h1>
+                    <h1 class="text-4xl font-bold text-white tracking-tighter uppercase">NexaStock</h1>
                     <p class="text-sky-400 font-bold text-xs uppercase tracking-[0.3em]">Inventory & Asset Management</p>
                 </div>
             </div>
             
-            <h2 class="text-5xl font-black text-white leading-tight">
+            <h2 class="text-5xl font-bold text-white leading-tight">
                 Automatic Management with <br>
                 <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 to-blue-600 italic">Integrated Analytics</span>
             </h2>
             
             <div class="flex gap-4">
                 <div class="bg-white/5 border border-white/10 px-6 py-3 rounded-2xl flex items-center gap-3">
-                    <span class="text-sky-400">🛡️</span>
+                    <span class="text-sky-400">���🛡��️</span>
                     <span class="text-sm font-bold text-slate-300">Secure</span>
                 </div>
                 <div class="bg-white/5 border border-white/10 px-6 py-3 rounded-2xl flex items-center gap-3">
-                    <span class="text-sky-400">🧠</span>
+                    <span class="text-sky-400">���🧠</span>
                     <span class="text-sm font-bold text-slate-300">Smart Control</span>
                 </div>
             </div>
@@ -45,6 +45,7 @@
 
                 <div id="loginPanel" class="space-y-6">
                     <form id="signinForm" class="space-y-5">
+                        <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>">
                         <div class="space-y-2">
                             <label class="text-[11px] font-black uppercase tracking-widest text-slate-500 ml-3">Email Address</label>
                             <div class="relative">
@@ -83,7 +84,7 @@
                                     <span class="text-lg">G</span> Google
                                 </button>
                                 <button type="button" class="btn bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 h-12 flex items-center justify-center gap-2">
-                                    <span class="text-lg">⌘</span> GitHub
+                                    <span class="text-lg">��⌘</span> GitHub
                                 </button>
                             </div>
                         </div>

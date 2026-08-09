@@ -1,5 +1,5 @@
 <?php
-require_once('Connection.php'); 
+require_once 'Connection.php';
 
 class Users extends Dbh
 {
@@ -29,7 +29,11 @@ class Users extends Dbh
 
         if (!password_verify($password, $user['password'])) return 3; // wrong password
 
-        if(session_status() === PHP_SESSION_NONE) session_start();
+        if(session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+        // Regenerate session ID to prevent session fixation attacks
+        session_regenerate_id(true);
 
         $_SESSION['id'] = $user['id'];
         $_SESSION['email'] = $user['email'];
@@ -38,8 +42,8 @@ class Users extends Dbh
         $_SESSION['last_name'] = $user['last_name'] ?? '';
         $_SESSION['photo'] = $user['photo'] ?? '';
 
-        return ($user['role'] === 'admin') 
-            ? '/NexaStock/public/Admin/home.php' 
+        return ($user['role'] === 'admin')
+            ? '/NexaStock/public/Admin/home.php'
             : '/NexaStock/public/Staff/home.php';
     }
 
@@ -236,7 +240,7 @@ class Users extends Dbh
             $today = $todayResult->fetch_assoc();
         }
 
-        return array_merge($products, $users, $today);
+        return [...$products, ...$users, ...$today];
     }
 
     //---------------------------------------------------------------------------//

@@ -2,6 +2,10 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+// Generate CSRF token if not present
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
 
 $currentUserName = trim(($_SESSION['first_name'] ?? '') . ' ' . ($_SESSION['last_name'] ?? ''));
 if ($currentUserName === '') {

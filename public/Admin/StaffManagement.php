@@ -15,15 +15,24 @@
     <aside class="w-64 hidden md:block min-h-screen border-r border-white/5 p-4 space-y-2">
         <p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold mb-4 ml-4">Main Menu</p>
         <nav class="space-y-1">
-            <?php 
-                $current_page = basename($_SERVER['PHP_SELF']); 
-            ?>
-            <a href="home.php" class="flex items-center gap-3 px-4 py-3 rounded-xl <?php echo ($current_page=='home.php')?'bg-purple-600/10 text-purple-400 border border-purple-500/20':'text-slate-400 hover:text-white hover:bg-white/5'; ?>"><i class="fas fa-chart-pie"></i> Dashboard</a>
-            <a href="Inventory.php" class="flex items-center gap-3 px-4 py-3 rounded-xl <?php echo ($current_page=='Inventory.php')?'bg-purple-600/10 text-purple-400 border border-purple-500/20':'text-slate-400 hover:text-white hover:bg-white/5'; ?>"><i class="fas fa-boxes-stacked"></i> Inventory Mgmt</a>
-            <a href="Assets.php" class="flex items-center gap-3 px-4 py-3 rounded-xl <?php echo ($current_page=='Assets.php')?'bg-purple-600/10 text-purple-400 border border-purple-500/20':'text-slate-400 hover:text-white hover:bg-white/5'; ?>"><i class="fas fa-desktop"></i> Asset Mgmt</a>
-            <a href="StaffManagement.php" class="flex items-center gap-3 px-4 py-3 rounded-xl <?php echo ($current_page=='StaffManagement.php')?'bg-purple-600/10 text-purple-400 border border-purple-500/20':'text-slate-400 hover:text-white hover:bg-white/5'; ?>"><i class="fas fa-users-gear"></i> Staff Mgmt</a>
-            <a href="StockMoni.php" class="flex items-center gap-3 px-4 py-3 rounded-xl <?php echo ($current_page=='StockMoni.php')?'bg-purple-600/10 text-purple-400 border border-purple-500/20':'text-slate-400 hover:text-white hover:bg-white/5'; ?>"><i class="fas fa-arrow-trend-up"></i> Stock Monitoring</a>
-            <a href="Report.php" class="flex items-center gap-3 px-4 py-3 rounded-xl <?php echo ($current_page=='Report.php')?'bg-purple-600/10 text-purple-400 border border-purple-500/20':'text-slate-400 hover:text-white hover:bg-white/5'; ?>"><i class="fas fa-file-contract"></i> Reports & Analytics</a>
+            <a href="home.php" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white">
+                <i class="fas fa-chart-pie"></i> Dashboard
+            </a>
+            <a href="Inventory.php" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-purple-600/10 text-purple-400 border border-purple-500/20 transition-all">
+                <i class="fas fa-boxes-stacked"></i> Inventory Mgmt
+            </a>
+            <a href="Assets.php" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white">
+                <i class="fas fa-desktop"></i> Asset Mgmt
+            </a>
+            <a href="StaffManagement.php" class="flex items-center gap-3 px-4 py-3 rounded-xl bg-purple-600/10 text-purple-400 border border-purple-500/20">
+                <i class="fas fa-users-gear"></i> Staff Mgmt
+           </a>
+            <a href="StockMoni.php" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white">
+                <i class="fas fa-arrow-trend-up"></i> Stock Monitoring
+            </a>
+            <a href="Report.php" class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-white/5 transition-all text-slate-400 hover:text-white">
+                <i class="fas fa-file-contract"></i> Reports & Analytics
+            </a>
         </nav>
     </aside>
 
@@ -51,10 +60,12 @@
     </main>
 
 
+
     <dialog id="staffModal" class="modal">
         <div class="modal-box bg-[#11141b] text-white border border-white/10">
             <h3 id="modalTitle" class="font-bold text-lg mb-4">Add Staff</h3>
             <form id="staffForm" class="space-y-4" enctype="multipart/form-data">
+                <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token'] ?? ''); ?>">
                 <input type="hidden" id="staff_id">
                 <input type="hidden" id="current_photo">
                 <div class="flex items-center gap-4">

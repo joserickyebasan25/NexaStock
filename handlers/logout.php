@@ -1,8 +1,19 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+include '../classes/Users.php';
+session_start();
+
+// CSRF protection for logout
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    exit;
 }
 
+if (empty($_POST['csrf_token']) || !hash_equals($_SESSION['csrf_token'] ?? '', $_POST['csrf_token'])) {
+    http_response_code(400);
+    exit;
+}
+
+// Clear session
 $_SESSION = [];
 
 if (ini_get('session.use_cookies')) {
